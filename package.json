@@ -2,7 +2,7 @@
   "name": "kayochin",
   "version": "0.0.0",
   "private": true,
-  "author": "Kentaro KAZUHAMA <kazken3@gmail.com>",
+  "author": "anonymous <example@example.net>",
   "description": "A simple helpful robot for your Company",
   "dependencies": {
     "hubot": "^2.12.0",
@@ -18,7 +18,8 @@
     "hubot-scripts": "^2.5.16",
     "hubot-shipit": "^0.2.0",
     "hubot-slack": "^3.3.0",
-    "hubot-youtube": "^0.1.2"
+    "hubot-youtube": "^0.1.2",
+    "request": "^2.58.0"
   },
   "engines": {
     "node": "0.10.x"

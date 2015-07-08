@@ -43,7 +43,7 @@ module.exports = (robot) ->
     #指定チャネルの2h分の番組表
     robot.hear /^getpg$/i, (msg) ->
         for ch, x in ['GR_23608','GR_24632','GR_1056','GR_1048','GR_1072']
-            target = "http://192.168.11.2:10772/api/schedule/#{ch}.json"
+            target = process.env.CHINACHU_API_URL+"/schedule/#{ch}.json"
             request = require('request')
             request.get
                 url: target, (err, response, body) ->
@@ -56,7 +56,7 @@ module.exports = (robot) ->
 
     #プログラムIDを指定して録画する
     robot.hear /^setrec (.*)/i, (msg) ->
-        target = "http://192.168.11.2:10772/api/program/#{msg.match[1]}.json"
+        target = process.env.CHINACHU_API_URL+"/program/#{msg.match[1]}.json"
         request = require('request')
         request.put
             url: target, (err, response, body) ->

@@ -48,11 +48,14 @@ module.exports = (robot) ->
             request.get
                 url: target, (err, response, body) ->
                     for val, i in JSON.parse(body)["programs"]
-                        if Math.floor(new Date().getTime()) <= JSON.parse(body)["programs"][i]["start"] && 
-                        JSON.parse(body)["programs"][i]["start"] <= (Math.floor(new Date().getTime())+(7200*1000))
+                        nowTime = Math.floor(new Date().getTime())
+                        startTime = JSON.parse(body)["programs"][i]["start"]
+                        if nowTime <= startTime && startTime  <= nowTime + (7200*1000)
                             date = new Date(JSON.parse(body)["programs"][i]["start"])
-                            msg.send(JSON.parse(body)["name"]+":"+date.getHours()+":"+date.getMinutes()+":"+
-                            JSON.parse(body)["programs"][i]["title"]+":"+JSON.parse(body)["programs"][i]["id"])
+                            msg.send(JSON.parse(body)["name"]+":"+
+                            date.getHours()+":"+date.getMinutes()+":"+
+                            JSON.parse(body)["programs"][i]["title"]+
+                            ":"+JSON.parse(body)["programs"][i]["id"])
 
     #プログラムIDを指定して録画する
     robot.hear /^setrec (.*)/i, (msg) ->
